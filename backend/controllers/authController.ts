@@ -6,7 +6,7 @@ export const login = (_req: any, res: any) => {
 }
 
 export const logOut = (_req: any, res: any) => {
-  res.send('LOG OUT')
+  res.send('LOG OUaaaasT')
 }
 
 export const signUp = async (req: any, res: any) => {
