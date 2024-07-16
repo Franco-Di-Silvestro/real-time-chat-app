@@ -1,6 +1,6 @@
 import User from "../models/userModel"
 import bcrypt from "bcryptjs"
-import generateTokenAndSetCookie from "../utils/generateToken"
+import generateTokenAndSetCookie from "../utils/generateTokenAndSetToken"
 
 
 
@@ -63,6 +63,7 @@ const hashedPassword = await bcrypt.hash(password, salt)
     res.status(500).json({error: "internal Server Error"});
   }
 }
+
 export const login = async (req: any, res: any) => {
   try {
     const {username,password} = req.body
