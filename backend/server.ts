@@ -4,6 +4,7 @@ import authRoutes from "./routes/authRoutes";
 import connectToMongoDB from "./db/connectToMongoDb";
 import cookieParser from "cookie-parser";
 import messageRoutes from "./routes/messageRoutes";
+import userRoutes from "./routes/userRoutes";
 
 config();
 
@@ -18,10 +19,7 @@ app.use('/api/auth', authRoutes)
 
 app.use('/api/messages', messageRoutes)
 
-// app.get("/", (req, res) => {
-//   res.send("DALE BO");
-// })
-
+app.use('/api/users', userRoutes)
 
 app.listen(PORT, () => {
   connectToMongoDB()
