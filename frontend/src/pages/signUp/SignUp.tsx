@@ -14,25 +14,25 @@ export interface IInputs {
 
 const SignUp = () => {
 
-const [inputs, setInputs] =
-  React.useState <IInputs>({
-    fullName: '',
-    username: '',
-    password: '',
-    confirmPassword: '',
-    gender: '',
-  })
+  const [inputs, setInputs] =
+    React.useState<IInputs>({
+      fullName: '',
+      username: '',
+      password: '',
+      confirmPassword: '',
+      gender: '',
+    })
 
-  const {loading, signup} = useSignUp()
+  const { loading, signup } = useSignUp()
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  await signup(inputs);
-}
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await signup(inputs);
+  }
 
-const handleCheckboxChange = (gender: string) => {
-  setInputs({...inputs, gender})
-}
+  const handleCheckboxChange = (gender: string) => {
+    setInputs({ ...inputs, gender })
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -112,7 +112,7 @@ const handleCheckboxChange = (gender: string) => {
           </Link>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2 border border-slate-700">Sign Up</button>
+            <button className="btn btn-block btn-sm mt-2 border border-slate-700" disabled={loading}>{loading ? <span className="loading loading-spinner"></span> : "SignUp"}</button>
           </div>
         </form>
       </div>
