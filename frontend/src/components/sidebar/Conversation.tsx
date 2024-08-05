@@ -1,6 +1,7 @@
 import React from "react";
 import { User } from "../../classes/User";
 import useConversation from "../../zustand/useConversation";
+import { useSocketContext } from "../../context/SocketContext";
 
 interface IConversation {
   user: User
@@ -9,9 +10,15 @@ interface IConversation {
 
 const Conversation = ({ user, lastIndex }: IConversation) => {
 
-  const {selectedConversation, setSelectedConversation} = useConversation(); 
+  const { selectedConversation, setSelectedConversation } = useConversation();
 
   const isSelected = selectedConversation?._id === user._id
+
+  const { onlineUsers } = useSocketContext();
+  
+  const isOnline = onlineUsers.includes(user._id)
+  console.log(onlineUsers);
+  
 
   return (
     <>
@@ -19,7 +26,7 @@ const Conversation = ({ user, lastIndex }: IConversation) => {
         className={`flex gap-2 items-center hover:bg-violet-800 hover:bg-opacity-60 rounded p-2 py-1 cursor-pointer ${isSelected ? 'bg-violet-800 bg-opacity-60' : ''}`}
         onClick={() => setSelectedConversation(!isSelected ? user : null)}
       >
-        <div className="avatar online">
+        <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img
               src={user.profilePic}

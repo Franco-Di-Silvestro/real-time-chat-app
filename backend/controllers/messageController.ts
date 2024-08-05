@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Conversation from "../models/conversationModel";
 import Message from "../models/messageModel";
+import { getReceiverSocketId, io } from "../socket/socket";
 
 export const sendMessage = async (req: any, res: any) => {
   try {
@@ -36,6 +37,12 @@ export const sendMessage = async (req: any, res: any) => {
 
     await conversation.save()
 
+
+    const receiverSocketId = getReceiverSocketId(receiverId)
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage)
+    }
+
     res.status(201).json(newMessage)
   } catch (error: any) {
     console.log('Error in sendMessage controller: ', error.message)
@@ -43,12 +50,12 @@ export const sendMessage = async (req: any, res: any) => {
   }
 }
 
-export const getMessages = async (req: any, res:any) => {
+export const getMessages = async (req: any, res: any) => {
   try {
-    const {id: userToChatId} = req.params;
+    const { id: userToChatId } = req.params;
     const senderId = req.user._id;
     const conversation = await Conversation.findOne({
-      participants:{$all: [senderId, userToChatId]},
+      participants: { $all: [senderId, userToChatId] },
     }).populate("messages")
 
     if (!conversation) {
