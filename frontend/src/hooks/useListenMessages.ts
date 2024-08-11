@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSocketContext } from '../context/SocketContext'
 import useConversation from '../zustand/useConversation'
-import notificationSound from "../assets/sounds/notification"
+import notification from "../assets/sounds/notification"
 
 const useListenMessages = () => {
     const { socket } = useSocketContext()
@@ -10,7 +10,7 @@ const useListenMessages = () => {
     useEffect(() => {
         socket?.on("newMessage", (newMessage) => {
             newMessage.shouldShake = true
-            const sound = new Audio(notificationSound)
+            const sound = new Audio(notification)
             sound.volume = 0.3
             sound.play()
             setMessages([...messages, newMessage])
