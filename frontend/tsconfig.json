@@ -7,5 +7,21 @@
     {
       "path": "./tsconfig.node.json"
     }
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ESNext",
+    "outDir": "./dist",
+    "rootDir": "./backend",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "backend/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
