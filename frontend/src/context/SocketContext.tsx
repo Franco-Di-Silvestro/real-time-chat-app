@@ -35,9 +35,7 @@ export const SocketContextProvider = ({ children }: ISocketContextProviderProps)
         }
 
         return () => {
-            if (newSocket) {
-                newSocket.close();
-            }
+                newSocket?.close();
         };
     }, [authUser]);
 

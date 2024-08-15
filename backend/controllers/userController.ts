@@ -8,7 +8,6 @@ export const getUsersForSidebar = async(req: any, res: any )=> {
 
     res.status(200).json(filteredUsers);
   } catch (error: any) {
-    console.log('Error in getUsersForSidebar: ', error.message)
     res.status(500).json({ error: 'Internal server error' })    
   }
 }
