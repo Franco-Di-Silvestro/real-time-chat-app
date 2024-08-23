@@ -44,7 +44,6 @@ const Login = () => {
             />
           </div>
 
-
           <div>
             <label className="label">
               <span className="text-base label-text">Password</span>
@@ -57,26 +56,33 @@ const Login = () => {
               className="w-full input input-bordered h-10"
             />
           </div>
-
-          <Link
-            to="/signup"
-            className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
-          >
-            Don't have an account
-          </Link>
+          <div className="flex justify-between">
+            <Link
+              to="/signup"
+              className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
+            >
+              Don't have an account
+            </Link>
+            <Link
+              to="/recover-password"
+              className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
+            >
+              Forgot your password?
+            </Link>
+          </div>
           <div>
             <button
               onClick={handleSubmit}
               className="btn btn-block btn-sm mt-2"
               disabled={loading}
             >
-              {loading ? <span className="loading loading-spinner"></span> : "Log In"}
+              {loading ? <span className="loading loading-spinner"></span> : 'Log In'}
             </button>
           </div>
         </form>
       </div>
     </div>
-  );
+  )
 };
 
 export default Login;
