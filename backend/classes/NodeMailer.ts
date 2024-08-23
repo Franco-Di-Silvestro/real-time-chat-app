@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer'
 import { google } from 'googleapis'
+import { config } from 'dotenv'
 
 export class NodeMailer {
   private static instance: NodeMailer
@@ -11,16 +12,19 @@ export class NodeMailer {
   }
 
   private async initTransporter() {
+
+    config()
+    
     const OAuth2 = google.auth.OAuth2
 
     const oauth2Client = new OAuth2(
-      '618461406027-to8l7f2im472mrlf80tc737opar2ritu.apps.googleusercontent.com', // Client ID
-      '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', // Client Secret
-      'https://developers.google.com/oauthplayground' // Redirect URL
+      process.env.CLIENT_ID, 
+      process.env.CLIENT_SECRET, 
+      process.env.REDIRECT_URL 
     )
 
     oauth2Client.setCredentials({
-      refresh_token: '1//04xK1iNBy8y-LCgYIARAAGAQSNwF-L9IrU3auQ25QYhE7a-RuM0fj-Dj1_PX-OCqUKuqAGHJmbN6UCszM5Gqi0elhMFBm_usY_yk',
+      refresh_token: process.env.REFRESH_TOKEN,
     })
 
     try {
@@ -31,9 +35,9 @@ export class NodeMailer {
         auth: {
           type: 'OAuth2',
           user: this.EMAIL,
-          clientId: '618461406027-to8l7f2im472mrlf80tc737opar2ritu.apps.googleusercontent.com',
-          clientSecret: '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',
-          refreshToken: '1//04xK1iNBy8y-LCgYIARAAGAQSNwF-L9IrU3auQ25QYhE7a-RuM0fj-Dj1_PX-OCqUKuqAGHJmbN6UCszM5Gqi0elhMFBm_usY_yk',
+          clientId: process.env.CLIENT_ID,
+          clientSecret: process.env.CLIENT_SECRET,
+          refreshToken: process.env.REFRESH_TOKEN,
           accessToken: accessToken.token || '', // Asegúrate de que accessToken esté correctamente manejado
         },
       })
