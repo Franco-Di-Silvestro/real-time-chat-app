@@ -2,9 +2,12 @@
   "name": "realtimechatapp",
   "version": "1.0.0",
   "description": "",
-  "main": "server.ts",
+  
+  "main": "backend/server",
   "scripts": {
-    "server": "nodemon backend/server.ts"
+    "server": "nodemon -r ts-node/register backend/server.ts",
+    "start": "ts-node backend/server.ts",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",

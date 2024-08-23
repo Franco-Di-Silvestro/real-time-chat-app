@@ -26,7 +26,7 @@ export const SocketContextProvider = ({ children }: ISocketContextProviderProps)
         let newSocket: Socket | null = null;
 
         if (authUser) {
-            newSocket = io("http://localhost:5000", { query: { userId: authUser._id } });
+            newSocket = io("https://real-time-chat-app-w93w.onrender.com", { query: { userId: authUser._id } });
             setSocket(newSocket);
 
             newSocket.on("getOnlineUsers", (users) => {

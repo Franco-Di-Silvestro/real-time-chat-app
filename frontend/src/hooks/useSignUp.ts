@@ -5,7 +5,7 @@ import { useAuthContext } from '../context/AuthContext'
 
 const useSignUp = () => {
   const [loading, setLoading] = React.useState<boolean>(false)
-  const { authUser, setAuthUser } = useAuthContext()
+  const { setAuthUser } = useAuthContext()
 
   const signup = async ({ fullName, username, password, confirmPassword, gender }: IInputs) => {
     const success = handleInputErrors({ fullName, username, password, confirmPassword, gender })
