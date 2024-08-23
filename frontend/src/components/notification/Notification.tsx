@@ -1,5 +1,3 @@
-import React from 'react'
-import toast from 'react-hot-toast';
 import { Message } from '../../classes/Message';
 import { User } from '../../classes/User';
 

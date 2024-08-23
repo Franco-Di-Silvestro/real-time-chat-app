@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { useSocketContext } from '../context/SocketContext';
 import useConversation from '../zustand/useConversation';
 import notificationSound from "../assets/sounds/notification.mp3";
@@ -10,7 +9,6 @@ import { User } from '../classes/User';
 const useListenMessages = () => {
     const { socket } = useSocketContext();
     const { selectedConversation, messages, setMessages } = useConversation();
-    const [userById, setUserById] = useState<User | undefined>(undefined);
 
     const handleMessage = async (newMessage: Message) => {
         newMessage.shouldShake = true;
@@ -37,7 +35,6 @@ const useListenMessages = () => {
                 throw new Error(data.error);
             }
 
-            setUserById(data);
             return data;
         } catch (error: unknown) {
             if (error instanceof Error) {
