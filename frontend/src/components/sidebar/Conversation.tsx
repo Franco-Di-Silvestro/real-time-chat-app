@@ -17,7 +17,6 @@ const Conversation = ({ user, lastIndex }: IConversation) => {
   const { onlineUsers } = useSocketContext();
   
   const isOnline = onlineUsers.includes(user._id)
-  console.log(onlineUsers);
   
 
   return (
