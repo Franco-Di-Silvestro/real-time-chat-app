@@ -2,7 +2,6 @@ export interface User {
   _id: string
   fullName: string
   username: string
-  email: string
   password: string
   gender: string
   profilePic: string
