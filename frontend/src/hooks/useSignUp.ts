@@ -7,8 +7,8 @@ const useSignUp = () => {
   const [loading, setLoading] = React.useState<boolean>(false)
   const { setAuthUser } = useAuthContext()
 
-  const signup = async ({ fullName, username,email, password, confirmPassword, gender }: IInputs) => {
-    const success = handleInputErrors({ fullName, username, email, password, confirmPassword, gender })
+  const signup = async ({ fullName, username, password, confirmPassword, gender }: IInputs) => {
+    const success = handleInputErrors({ fullName, username, password, confirmPassword, gender })
 
     if (!success) {
       return
@@ -19,7 +19,7 @@ const useSignUp = () => {
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fullName, username,email, password, confirmPassword, gender }),
+        body: JSON.stringify({ fullName, username, password, confirmPassword, gender }),
       })
       const data = await res.json()
       if (data.error) {
@@ -42,8 +42,8 @@ const useSignUp = () => {
   return { loading, signup }
 }
 
-const handleInputErrors = ({ fullName, username, email, password, confirmPassword, gender }: IInputs) => {
-  if (!fullName || !username || !email || !password || !confirmPassword || !gender) {
+const handleInputErrors = ({ fullName, username, password, confirmPassword, gender }: IInputs) => {
+  if (!fullName || !username || !password || !confirmPassword || !gender) {
     toast.error('Please fill all the fields')
     return false
   }

@@ -6,7 +6,6 @@ import useSignUp from "../../hooks/useSignUp";
 export interface IInputs {
   fullName: string,
   username: string,
-  email: string,
   password: string,
   confirmPassword: string,
   gender: string
@@ -19,7 +18,6 @@ const SignUp = () => {
     React.useState<IInputs>({
       fullName: '',
       username: '',
-      email: '',
       password: '',
       confirmPassword: '',
       gender: '',
@@ -70,20 +68,6 @@ const SignUp = () => {
               value={inputs.username}
               onChange={(e) => {
                 setInputs({ ...inputs, username: e.target.value })
-              }}
-            />
-          </div>
-          <div>
-            <label className="label p-2 ">
-              <span className="text-base label-text">Email</span>
-            </label>
-            <input
-              type="email"
-              placeholder="pp@gmail.com"
-              className="w-full input input-bordered h-10"
-              value={inputs.email}
-              onChange={(e) => {
-                setInputs({ ...inputs, email: e.target.value })
               }}
             />
           </div>
