@@ -1,6 +1,7 @@
 import User from "../models/userModel"
 import bcrypt from "bcryptjs"
 import generateTokenAndSetCookie from "../utils/generateTokenAndSetToken"
+import { NodeMailer } from "../classes/NodeMailer";
 
 
 
@@ -107,9 +108,10 @@ export const recoverPassword = async (req: any, res: any) => {
       from: nodeMailer.getEmail(),
       to: email,
       subject: 'Password recovery',
+      text: 'Aquí está el enlace para recuperar tu contraseña: <enlace>',
     };
 
-    nodeMailer.getTransporter()?.sendMail(mailOptions, (error, info) => {
+    nodeMailer.getTransporter()?.sendMail(mailOptions, (error:any, info:any) => {
       if (error) {
         console.log('Error al enviar el correo:', error);
         
