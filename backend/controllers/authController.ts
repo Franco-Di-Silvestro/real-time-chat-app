@@ -115,6 +115,7 @@ export const recoverPassword = async (req: any, res: any) => {
     nodeMailer.getTransporter()?.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log('Error al enviar el correo:', error);
+        
         return res.status(400).json({ error: 'Error al enviar el correo' });
       } else {
         console.log('Correo enviado:', info.response);
