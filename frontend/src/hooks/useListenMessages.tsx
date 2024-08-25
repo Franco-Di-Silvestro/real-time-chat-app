@@ -27,7 +27,7 @@ const useListenMessages = () => {
         }
     };
 
-    const getUserByID = async (id: String): Promise<User | undefined> => {
+    const getUserByID = async (id: string): Promise<User | undefined> => {
         try {
             const res = await fetch(`/api/users/${id}`);
             const data = await res.json();

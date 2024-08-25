@@ -42,8 +42,8 @@ const useSignUp = () => {
   return { loading, signup }
 }
 
-const handleInputErrors = ({ fullName, username, password, confirmPassword, gender }: IInputs) => {
-  if (!fullName || !username || !password || !confirmPassword || !gender) {
+const handleInputErrors = ({ fullName, username,email, password, confirmPassword, gender }: IInputs) => {
+  if (!fullName || !username ||!email||  !password || !confirmPassword || !gender) {
     toast.error('Please fill all the fields')
     return false
   }
